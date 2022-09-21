@@ -1,0 +1,102 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <style>
+      label, button {
+    font-size: 16px;
+    cursor: pointer;
+}
+body {
+  background-image: url('https://d1sr9z1pdl3mb7.cloudfront.net/wp-content/uploads/2019/11/04160101/facial-recognition-for-biometric-access-control-housing-1024x662.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-size: 100% 100%;
+}
+
+#header{
+  font-family: cursive;
+}
+input {
+    border: 3px solid #eee;
+    padding: 100px 450px;
+    border-radius: 6px;
+    width : 1000px;
+    height: 200px;
+}
+
+form {
+    display: grid;
+    grid-row-gap: 20px;
+    justify-content: center;
+}
+
+button {
+    margin-top: 10px;
+    background: #133EF5;
+    color: #fff;
+    padding: 10px 0;
+    border: 0;
+    border-radius: 6px;
+    font-family: cursive;
+}
+
+#text_photo {
+    font-size : 35px;
+    font-weight: bold;
+    font-family: cursive;
+    text-align: center;
+    color:0000;
+}
+
+#find_button {
+    width: 400px;
+    height : 40px;
+    font-size: 20px;
+    text-align: center;
+
+}
+</style>
+
+</head>
+<body>
+  <div>
+    <div id="header">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Criminal Detection</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contact US</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <form action="/submit" method="POST" enctype="multipart/form-data">
+    
+    <label for="photo" id="text_photo">Photo</label>
+    <input type="file" id="photo" name="photo">
+
+    <button type="submit">Submit</button>
+  </form>
+
+</body>
+
+</html>

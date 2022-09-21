@@ -1,0 +1,167 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <style>
+    * {
+  box-sizing: border-box;
+}
+body {
+  background-image: url('https://d1sr9z1pdl3mb7.cloudfront.net/wp-content/uploads/2019/11/04160101/facial-recognition-for-biometric-access-control-housing-1024x662.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-size: 100% 100%;
+  font-family: cursive;
+}
+img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+}
+#row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+    label, button {
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    input, textarea {
+      border: 3px solid #eee;
+      padding: .4em 1em;
+      border-radius: 6px;
+    }
+
+    form {
+      display: grid;
+      grid-row-gap: 10px;
+      justify-content: center;
+    }
+    #left {
+      float: left;
+      width: 50%;
+      padding-top: 30px;
+      font-size: 20px;
+      color: #133EF5;
+    }
+    #right {
+      float: left;
+      width: 50%;
+      padding-top: 30px;
+      font-size: 20px;
+      color:#133EF5
+    }
+    
+    button {
+      margin-top: 150px;
+      background: #133EF5;
+      color: #fff;
+      padding: 5px;
+      border: 0;
+      border-radius: 60px;
+      font-family: cursive;
+    }
+    #find_button {
+    width: 400px;
+    height : 40px;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+  }
+  .container { 
+    top: 5%;
+    height: 350px;
+    width: 800px;
+    position: relative;
+    border: 3px solid blue; 
+}
+
+
+  </style>
+</head>
+<body>
+    <div>
+      <div id="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Criminal Detection</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contact US</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <!--<div class="container">
+      <div id="row">
+        <div id="column"></div>
+        <div id="column"></div>
+      </div>
+    </div>-->
+    <div class="container" style="width:800px;">
+      <div id="left"  style="width:300px; float:left; text-align: center;">Input Image</div>
+      <div id="right" style="width:300px; float:right; text-align: center;">Target Image</div>
+    </div>
+    <div style="clear: both;"></div>
+    <button onclick= find() id="find_button" >Find</button>
+    
+  <script>
+  function find(){
+   fetch("http://localhost:3000/find",{
+          method: 'get',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify()
+          }).then(response => response.json()).then(response =>{
+      
+       if(response.status === 200){
+        alert("A Criminal")
+
+      } 
+      else{
+        alert("Not a Criminal")
+      } 
+     
+      var img1 = document.createElement('img');
+      img1.src = `https://inputtarget.s3.us-east-1.amazonaws.com/${response.input_img_url}`
+      img1.style.width = '100%'
+      img1.style.height = '80%'
+      document.getElementById('left').appendChild(img1);
+      console.log(response)
+
+      var img = document.createElement('img');
+      img.src = `https://cfdstarget.s3.us-east-1.amazonaws.com/${response.output_img_url}` 
+      img.style.width = '100%'
+      img.style.height = '80%'
+      document.getElementById('right').appendChild(img);
+      console.log(response)
+    });
+  }
+  </script>
+
+</body>
+
+</html>
